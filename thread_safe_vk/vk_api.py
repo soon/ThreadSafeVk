@@ -1,6 +1,9 @@
 from threading import Lock
+
 import vk
-from utils import safe_call_and_log_if_failed
+
+from thread_safe_vk.utils import safe_call_and_log_if_failed
+
 
 __author__ = 'Andrew Kuchev (kuchevad@gmail.com)'
 
