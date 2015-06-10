@@ -42,10 +42,10 @@ class ThreadSafeVkApi(object):
         :raises ValueError: When api_id/login/password or access_token has not been defined
                             via __init__ or init_credentials
         """
-        if self.app_id and self.login and self.password:
-            self._vkapi = vk.API(self.app_id, self.login, self.password)
-        elif self.access_token:
+        if self.access_token:
             self._vkapi = vk.API(access_token=self.access_token)
+        elif self.app_id and self.login and self.password:
+            self._vkapi = vk.API(self.app_id, self.login, self.password)
         else:
             raise ValueError('Either login/password or access_token are not initialized')
 
