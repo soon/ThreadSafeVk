@@ -29,11 +29,11 @@ class ThreadSafeVkApi(object):
         Initializes vk api using given credentials.
         You should provide either app_id/login/password or access_token as named parameters
         """
-        if all(x in kwargs for x in ('app_id', 'login', 'password')):
-            self.app_id, self.login, self.password = kwargs['app_id'], kwargs['login'], kwargs['password']
-        elif 'access_token' in kwargs:
-            self.access_token = kwargs['access_token']
-        else:
+        self.app_id, self.login, self.password, self.access_token = map(
+            lambda s: kwargs.get(s, None),
+            ('app_id', 'login', 'password', 'access_token'))
+
+        if not (self.app_id and self.login and self.password) and not self.access_token:
             raise ValueError('Expected either app_id/login/password or access_token parameter')
 
     def initialize_vkapi(self):
